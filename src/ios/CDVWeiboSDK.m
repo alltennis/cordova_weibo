@@ -270,14 +270,29 @@ NSString *WEIBO_USER_CANCEL_INSTALL = @"user cancel install weibo";
  @return 图片NSdata数据
  */
 - (NSData *)processImage:(NSString *)image {
-    if ([self isBase64Data:image]) {
-        return [[NSData alloc] initWithBase64EncodedString:image options:0];
-    } else if ([image hasPrefix:@"http://"] || [image hasPrefix:@"https://"]) {
-        NSURL *url = [NSURL URLWithString:image];
-        return [NSData dataWithContentsOfURL:url];
-    } else {
-        return [NSData dataWithContentsOfFile:image];
+    NSData *data = nil;
+    if ([image hasPrefix:@"http://"] || [image hasPrefix:@"https://"])
+    {
+        data = [NSData dataWithContentsOfURL:[NSURL URLWithString:image]];
+    }    
+    else if ([image hasPrefix:@"data:image"])
+    {
+        // a base 64 string
+        NSURL *base64URL = [NSURL URLWithString:image];
+        data = [NSData dataWithContentsOfURL:base64URL];
     }
+    //else if ([url rangeOfString:@"temp:"].length != 0)
+    //{
+    //    url =  [NSTemporaryDirectory() stringByAppendingPathComponent:[url componentsSeparatedByString:@"temp:"][1]];
+    //    data = [NSData dataWithContentsOfFile:url];
+    //}
+    else
+    {
+        // local file
+        //url = [[NSBundle mainBundle] pathForResource:[url stringByDeletingPathExtension] ofType:[url pathExtension]];
+        data = [NSData dataWithContentsOfFile:image];
+    }
+    return data;
 }
 
 /**
