@@ -291,6 +291,7 @@ NSString *WEIBO_USER_CANCEL_INSTALL = @"user cancel install weibo";
         // local file
         //url = [[NSBundle mainBundle] pathForResource:[url stringByDeletingPathExtension] ofType:[url pathExtension]];
         data = [NSData dataWithContentsOfFile:image];
+        data = UIImageJPEGRepresentation(data,1);
     }
     return data;
 }
