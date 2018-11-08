@@ -112,14 +112,14 @@
 
   <source-file src="src/android/WeiboSDKPlugin.java" target-dir="src/me/vanpan/weibosdk" />
   <!-- android weibo sdk version 4.1.5  https://github.com/sinaweibosdk/weibo_android_sdk-->
-  <source-file src="src/android/libs/so/arm64-v8a/libweibosdkcore.so" target-dir="app/libs/arm64-v8a/"/>
-  <source-file src="src/android/libs/so/armeabi/libweibosdkcore.so" target-dir="app/libs/armeabi/"/>
-  <source-file src="src/android/libs/so/armeabi-v7a/libweibosdkcore.so" target-dir="app/libs/armeabi-v7a/"/>
-  <source-file src="src/android/libs/so/mips/libweibosdkcore.so" target-dir="app/libs/mips/"/>
-  <source-file src="src/android/libs/so/mips64/libweibosdkcore.so" target-dir="app/libs/mips64/"/>
-  <source-file src="src/android/libs/so/x86/libweibosdkcore.so" target-dir="app/libs/x86/"/>
-  <source-file src="src/android/libs/so/x86_64/libweibosdkcore.so" target-dir="app/libs/x86_64/"/>
-  <source-file src="src/android/libs/openDefault-4.1.5.aar" target-dir="app/libs/" />
+  <source-file src="src/android/libs/so/arm64-v8a/libweibosdkcore.so" target-dir="src/app/libs/arm64-v8a/"/>
+  <source-file src="src/android/libs/so/armeabi/libweibosdkcore.so" target-dir="src/app/libs/armeabi/"/>
+  <source-file src="src/android/libs/so/armeabi-v7a/libweibosdkcore.so" target-dir="src/app/libs/armeabi-v7a/"/>
+  <source-file src="src/android/libs/so/mips/libweibosdkcore.so" target-dir="src/app/libs/mips/"/>
+  <source-file src="src/android/libs/so/mips64/libweibosdkcore.so" target-dir="src/app/libs/mips64/"/>
+  <source-file src="src/android/libs/so/x86/libweibosdkcore.so" target-dir="src/app/libs/x86/"/>
+  <source-file src="src/android/libs/so/x86_64/libweibosdkcore.so" target-dir="src/app/libs/x86_64/"/>
+  <source-file src="src/android/libs/openDefault-4.1.5.aar" target-dir="src/app/libs/" />
   <framework src="src/android/libs/WeiboSDKPlugin.gradle" custom="true" type="gradleReference" />
 </platform>
 </plugin>
