@@ -119,7 +119,7 @@
   <source-file src="src/android/libs/so/mips64/libweibosdkcore.so" target-dir="jniLibs/mips64"/>
   <source-file src="src/android/libs/so/x86/libweibosdkcore.so" target-dir="jniLibs/x86"/>
   <source-file src="src/android/libs/so/x86_64/libweibosdkcore.so" target-dir="jniLibs/x86_64"/>
-  <lib-file src="src/android/libs/openDefault-4.1.5.aar" />
+  <lib-file src="src/android/libs/openDefault-4.3.1.aar" />
   <framework src="src/android/libs/WeiboSDKPlugin.gradle" custom="true" type="gradleReference" />
 </platform>
 </plugin>
