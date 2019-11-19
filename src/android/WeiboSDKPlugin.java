@@ -28,6 +28,7 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
+import org.apache.cordova.CordovaPreferences;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,6 +49,7 @@ public class WeiboSDKPlugin extends CordovaPlugin implements WbShareCallback {
     public static CallbackContext currentCallbackContext;
     public static String APP_KEY;
     public static WbShareHandler shareHandler = null;
+    protected static CordovaPreferences wx_preferences;
     private Oauth2AccessToken mAccessToken;
     private String REDIRECT_URL;
     private SsoHandler mSsoHandler;
@@ -55,8 +57,15 @@ public class WeiboSDKPlugin extends CordovaPlugin implements WbShareCallback {
     @Override
     protected void pluginInitialize() {
         super.pluginInitialize();
+	
+	if(wx_preferences == null) {
+            wx_preferences = this.preferences;
+        }
+
         //APP_KEY = webView.getPreferences().getString(WEBIO_APP_ID, ""); //临时禁用，过长的数字id会转为浮点数
-	APP_KEY = "2166156684";
+	//APP_KEY = "2166156684";
+	APP_KEY = wx_preferences.getString(WEBIO_APP_ID, "");
+
         REDIRECT_URL = webView.getPreferences().getString(WEBIO_REDIRECT_URL, DEFAULT_URL);
         WbSdk.install(WeiboSDKPlugin.this.cordova.getActivity(),new AuthInfo(WeiboSDKPlugin.this.cordova.getActivity(), APP_KEY, REDIRECT_URL, SCOPE));
     }
