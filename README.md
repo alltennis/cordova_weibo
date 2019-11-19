@@ -6,7 +6,7 @@
 
 A Cordova wrapper around the Sina WeiboSDK for Android and iOS. Provides access to ssoLogin, WeiboSharing etc... [简体中文](https://github.com/iVanPan/cordova_weibo/blob/master/README_ZH.md)  
 
-update sdk
+update new sdk
 
 ## Feature
 - Weibo SSO Login
