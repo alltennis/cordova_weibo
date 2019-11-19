@@ -57,15 +57,10 @@ public class WeiboSDKPlugin extends CordovaPlugin implements WbShareCallback {
     @Override
     protected void pluginInitialize() {
         super.pluginInitialize();
-	
-	if(wx_preferences == null) {
-            wx_preferences = this.preferences;
-        }
 
-        //APP_KEY = webView.getPreferences().getString(WEBIO_APP_ID, ""); //临时禁用，过长的数字id会转为浮点数
-	//APP_KEY = "2166156684";
-	APP_KEY = wx_preferences.getString(WEBIO_APP_ID, "");
-
+        // The first letter "a" was added in plugin.xml to avoid the string be parsed as
+        // a number, remove it here.
+        APP_KEY = webView.getPreferences().getString(WEBIO_APP_ID, "a").substring(1);
         REDIRECT_URL = webView.getPreferences().getString(WEBIO_REDIRECT_URL, DEFAULT_URL);
         WbSdk.install(WeiboSDKPlugin.this.cordova.getActivity(),new AuthInfo(WeiboSDKPlugin.this.cordova.getActivity(), APP_KEY, REDIRECT_URL, SCOPE));
     }
@@ -213,8 +208,10 @@ public class WeiboSDKPlugin extends CordovaPlugin implements WbShareCallback {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        if (mSsoHandler != null) {
+        if (mSsoHandler != null && requestCode == 32973) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, intent);
+        } else if(requestCode == 1) {
+            WeiboSDKPlugin.shareHandler.doResultIntent(intent,this);
         }
     }
 
@@ -421,11 +418,11 @@ public class WeiboSDKPlugin extends CordovaPlugin implements WbShareCallback {
         WeiboSDKPlugin.currentCallbackContext.error(SHARE_FAIL);
     }
 
-    @Override
-    public void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        //WeiboSDKPlugin.shareHandler.doResultIntent(intent,this);
-    }
+    // @Override
+    // public void onNewIntent(Intent intent) {
+    //     super.onNewIntent(intent);
+    //     WeiboSDKPlugin.shareHandler.doResultIntent(intent,this);
+    // }
 
     private class SelfWbAuthListener implements com.sina.weibo.sdk.auth.WbAuthListener{
         @Override
